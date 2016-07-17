@@ -12,6 +12,7 @@ public class Test {
 		rs = conn.query("Select * from employees;");
 		
 		try {
+			System.out.println("Empleados:");
 			while(rs.next()){
 				System.out.println("Nombre: " + rs.getString("first_name") + ", Apellido: " + rs.getString("last_name"));
 			}
@@ -20,7 +21,7 @@ public class Test {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}	
-		
+		System.out.println("Fin");
 	}
 
 }
