@@ -1,27 +1,24 @@
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 public class Test {
 
 	public static void main(String[] args) {
 
-		ResultSet rs;
-		
 		JdbcConnection conn = new JdbcConnection();
-		
-		rs = conn.query("Select * from employees;");
-		
-		try {
-			System.out.println("Empleados:");
-			while(rs.next()){
-				System.out.println("Nombre: " + rs.getString("first_name") + ", Apellido: " + rs.getString("last_name"));
-			}
-			rs.close();
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}	
-		System.out.println("Fin");
+		System.out.println("Obtenemos los empleados actuales.");
+
+		conn.query("Select * from employees;");
+
+		System.out.println("Se sumara al empleado Pablo Funes.");
+
+		conn.insert("insert into employees" + "(last_name, first_name, email, department, salary) "
+				+ "values ('Funes', 'Pablo', 'pabfun7@gmail.com', 'IT', 25000)");
+
+		System.out.println("Obtenemos los empleados actualizado.");
+
+		conn.query("Select * from employees;");
+
+		conn.close();
+
 	}
 
 }
